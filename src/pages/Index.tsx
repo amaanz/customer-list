@@ -4,6 +4,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { SearchBar } from "@/components/SearchBar";
 import { FiltersDropdown } from "@/components/FiltersDropdown";
 import { CustomersTable, SortConfig } from "@/components/CustomersTable";
+import logo from "@/assets/doubletick-logo.png";
 
 const TOTAL_CUSTOMERS = 1_000_000;
 const PAGE_SIZE = 30;
@@ -102,11 +103,14 @@ const Index = () => {
       <header className="border-b border-border bg-card sticky top-0 z-20">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div>
-              <h1 className="text-2xl font-bold">Customers</h1>
-              <p className="text-sm text-muted-foreground mt-1">
-                Manage and browse your customer database
-              </p>
+            <div className="flex items-center gap-4">
+              <img src={logo} alt="DoubleTick" className="h-8" />
+              <div>
+                <h1 className="text-2xl font-bold">Customers</h1>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Manage and browse your customer database
+                </p>
+              </div>
             </div>
             <FiltersDropdown />
           </div>

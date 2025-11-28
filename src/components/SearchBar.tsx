@@ -1,5 +1,5 @@
-import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import searchIcon from "@/assets/icon-search.svg";
 
 interface SearchBarProps {
   value: string;
@@ -12,7 +12,11 @@ export function SearchBar({ value, onChange, resultCount, totalCount }: SearchBa
   return (
     <div className="w-full max-w-md">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <img 
+          src={searchIcon} 
+          alt="" 
+          className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60"
+        />
         <Input
           type="text"
           placeholder="Search by name, email, or phone..."
