@@ -15,19 +15,16 @@ export function SearchBar({ value, onChange, resultCount, totalCount }: SearchBa
         <img 
           src={searchIcon} 
           alt="" 
-          className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-60"
+          className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-40"
         />
         <Input
           type="text"
-          placeholder="Search by name, email, or phone..."
+          placeholder="Search Customers"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="pl-9"
+          className="pl-10"
         />
       </div>
-      <p className="mt-2 text-sm text-muted-foreground">
-        {value ? `${resultCount.toLocaleString()} of ${totalCount.toLocaleString()} customers` : `${totalCount.toLocaleString()} customers`}
-      </p>
     </div>
   );
 }

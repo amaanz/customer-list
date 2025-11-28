@@ -1,14 +1,9 @@
 import { useRef, useEffect } from "react";
-import { ArrowUpDown, ArrowUp, ArrowDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import { Customer } from "@/utils/generateCustomers";
 import userIcon from "@/assets/icon-user.svg";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export type SortConfig = {
   key: keyof Customer | null;
@@ -80,68 +75,23 @@ export function CustomersTable({
       <table className="w-full border-collapse">
         <thead className="sticky top-0 bg-table-header z-10 border-b border-table-border">
           <tr>
-            <th className="text-left p-4 font-semibold text-sm">
-              <Button
-                variant="ghost"
-                onClick={() => onSort("name")}
-                className="hover:bg-transparent p-0 h-auto font-semibold"
-              >
-                Name
-                {getSortIcon("name")}
-              </Button>
+            <th className="text-left p-4 font-medium text-sm text-muted-foreground w-12">
+              <Checkbox />
             </th>
-            <th className="text-left p-4 font-semibold text-sm">
-              <Button
-                variant="ghost"
-                onClick={() => onSort("phone")}
-                className="hover:bg-transparent p-0 h-auto font-semibold"
-              >
-                Phone
-                {getSortIcon("phone")}
-              </Button>
+            <th className="text-left p-4 font-medium text-sm text-muted-foreground">
+              Customer
             </th>
-            <th className="text-left p-4 font-semibold text-sm">
-              <Button
-                variant="ghost"
-                onClick={() => onSort("email")}
-                className="hover:bg-transparent p-0 h-auto font-semibold"
-              >
-                Email
-                {getSortIcon("email")}
-              </Button>
+            <th className="text-left p-4 font-medium text-sm text-muted-foreground">
+              Score
             </th>
-            <th className="text-left p-4 font-semibold text-sm">
-              <Button
-                variant="ghost"
-                onClick={() => onSort("score")}
-                className="hover:bg-transparent p-0 h-auto font-semibold"
-              >
-                Score
-                {getSortIcon("score")}
-              </Button>
+            <th className="text-left p-4 font-medium text-sm text-muted-foreground">
+              Email
             </th>
-            <th className="text-left p-4 font-semibold text-sm">
-              <Button
-                variant="ghost"
-                onClick={() => onSort("lastMessageAt")}
-                className="hover:bg-transparent p-0 h-auto font-semibold"
-              >
-                Last Message
-                {getSortIcon("lastMessageAt")}
-              </Button>
+            <th className="text-left p-4 font-medium text-sm text-muted-foreground">
+              Last message sent at
             </th>
-            <th className="text-left p-4 font-semibold text-sm">
-              <Button
-                variant="ghost"
-                onClick={() => onSort("addedBy")}
-                className="hover:bg-transparent p-0 h-auto font-semibold"
-              >
-                Added By
-                {getSortIcon("addedBy")}
-              </Button>
-            </th>
-            <th className="text-right p-4 font-semibold text-sm w-16">
-              Actions
+            <th className="text-left p-4 font-medium text-sm text-muted-foreground">
+              Added by
             </th>
           </tr>
         </thead>
@@ -152,8 +102,11 @@ export function CustomersTable({
               className="border-b border-table-border hover:bg-table-hover transition-colors"
             >
               <td className="p-4">
+                <Checkbox />
+              </td>
+              <td className="p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden">
+                  <div className="w-9 h-9 rounded-full bg-muted flex items-center justify-center overflow-hidden flex-shrink-0">
                     <img
                       src={customer.avatar || userIcon}
                       alt={customer.name}
@@ -163,48 +116,22 @@ export function CustomersTable({
                       }}
                     />
                   </div>
-                  <span className="font-medium">{customer.name}</span>
+                  <div className="flex flex-col">
+                    <span className="font-medium text-foreground">{customer.name}</span>
+                    <span className="text-sm text-muted-foreground">{customer.phone}</span>
+                  </div>
                 </div>
               </td>
-              <td className="p-4 text-muted-foreground">{customer.phone}</td>
+              <td className="p-4 text-foreground">{customer.score}</td>
               <td className="p-4 text-muted-foreground">{customer.email}</td>
-              <td className="p-4">
-                <span
-                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    customer.score >= 75
-                      ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                      : customer.score >= 50
-                      ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
-                      : customer.score >= 25
-                      ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"
-                      : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"
-                  }`}
-                >
-                  {customer.score}
-                </span>
-              </td>
               <td className="p-4 text-sm text-muted-foreground">
                 {formatDate(customer.lastMessageAt)}
               </td>
-              <td className="p-4 text-sm text-muted-foreground">
-                {customer.addedBy}
-              </td>
-              <td className="p-4 text-right">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-popover">
-                    <DropdownMenuItem>View Details</DropdownMenuItem>
-                    <DropdownMenuItem>Send Message</DropdownMenuItem>
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem className="text-destructive">
-                      Delete
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+              <td className="p-4">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <img src={userIcon} alt="" className="w-4 h-4" />
+                  <span>{customer.addedBy}</span>
+                </div>
               </td>
             </tr>
           ))}
