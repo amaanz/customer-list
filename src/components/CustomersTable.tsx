@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { ArrowUpDown, ArrowUp, ArrowDown, MoreHorizontal } from "lucide-react";
 import { Customer } from "@/utils/generateCustomers";
+import userIcon from "@/assets/icon-user.svg";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -152,11 +153,16 @@ export function CustomersTable({
             >
               <td className="p-4">
                 <div className="flex items-center gap-3">
-                  <img
-                    src={customer.avatar}
-                    alt={customer.name}
-                    className="w-8 h-8 rounded-full"
-                  />
+                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden">
+                    <img
+                      src={customer.avatar || userIcon}
+                      alt={customer.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = userIcon;
+                      }}
+                    />
+                  </div>
                   <span className="font-medium">{customer.name}</span>
                 </div>
               </td>

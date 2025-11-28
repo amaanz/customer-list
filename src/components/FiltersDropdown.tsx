@@ -1,5 +1,5 @@
-import { Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import filterIcon from "@/assets/icon-filter.svg";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,7 @@ export function FiltersDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="default">
-          <Filter className="mr-2 h-4 w-4" />
+          <img src={filterIcon} alt="" className="mr-2 h-4 w-4" />
           Filters
         </Button>
       </DropdownMenuTrigger>
