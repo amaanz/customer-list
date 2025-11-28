@@ -28,7 +28,7 @@ The application focuses on **smooth UX** while browsing massive datasets, suppor
 | React + TypeScript | Core application & UI components    |
 | Vite            | Fast dev server & bundler              |
 | shadcn-ui       | Common UI primitives                    |
-| Tailwind CSS    | Utility-first styling system           |
+| CSS    | Utility-first styling system           |
 | ES Modules      | Import/export everywhere, Node 22+     |
 
 ---
