@@ -15,7 +15,7 @@ export function FiltersDropdown() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="default">
           <img src={filterIcon} alt="" className="mr-2 h-4 w-4" />
-          Filters
+          Add Filters
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56 bg-popover">

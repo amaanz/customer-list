@@ -102,25 +102,23 @@ const Index = () => {
       {/* Header */}
       <header className="border-b border-border bg-card sticky top-0 z-20">
         <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div className="flex items-center gap-4">
-              <img src={logo} alt="DoubleTick" className="h-8" />
-              <div>
-                <h1 className="text-2xl font-bold">Customers</h1>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Manage and browse your customer database
-                </p>
-              </div>
-            </div>
-            <FiltersDropdown />
+          <div className="flex items-center gap-3 mb-4">
+            <img src={logo} alt="DoubleTick" className="h-6" />
           </div>
-          <div className="mt-4">
+          <div className="flex items-center gap-2 mb-6">
+            <h1 className="text-xl font-semibold text-foreground">All Customers</h1>
+            <span className="px-2 py-0.5 bg-secondary text-secondary-foreground text-sm font-medium rounded">
+              {sortedCustomers.length.toLocaleString()}
+            </span>
+          </div>
+          <div className="flex items-center gap-4">
             <SearchBar
               value={searchTerm}
               onChange={setSearchTerm}
               resultCount={sortedCustomers.length}
               totalCount={TOTAL_CUSTOMERS}
             />
+            <FiltersDropdown />
           </div>
         </div>
       </header>
